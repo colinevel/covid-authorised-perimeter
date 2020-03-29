@@ -1,12 +1,9 @@
 import React, { Component } from "react";
-import { Map, GoogleApiWrapper } from "google-maps-react";
+import { Map, Marker, GoogleApiWrapper } from "google-maps-react";
 
 
 export class MapsContainer extends Component {
 
-    state = {
-        
-    }
 
   render() {
     if (!this.props.loaded) {
@@ -21,9 +18,17 @@ export class MapsContainer extends Component {
     return (
       <Map
         google={this.props.google}
-        zoom={14}
+        zoom={15}
         style={mapStyles}
+        center={{
+            lat: this.props.lat,
+            lng: this.props.lng
+          }}
       >
+      <Marker
+          name={"Location"}
+          position= {{lat: this.props.lat, lng: this.props.lng}}
+        />
       </Map>
     );
   }
